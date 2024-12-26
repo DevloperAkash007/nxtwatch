@@ -4,7 +4,6 @@ import {
   ListItem,
   ThumbnailUrl,
   Title,
-  ThumbnailUrlContainer,
   ViewConut,
 } from './StyledComponents'
 

@@ -139,7 +139,11 @@ export const LDS = styled.li`
   };
 `
 
-export const UserBtn = styled(NoDisplayButton)`
+export const UserBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   color: ${props => (props.isSave ? '#2563eb' : '#64748b')};
@@ -148,7 +152,11 @@ export const UserBtn = styled(NoDisplayButton)`
   font-family: 'Roboto';
   font-weight: 600;
 `
-export const UserLikeBtn = styled(NoDisplayButton)`
+export const UserLikeBtn =  styled.button`
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   color: ${props => (props.isLike ? '#2563eb' : '#64748b')};
@@ -157,7 +165,11 @@ export const UserLikeBtn = styled(NoDisplayButton)`
   font-family: 'Roboto';
   font-weight: 600;
 `
-export const UserDislikeBtn = styled(NoDisplayButton)`
+export const UserDislikeBtn =  styled.button`
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   color: ${props => (props.isDisLike ? '#2563eb' : '#64748b')};
@@ -209,7 +221,7 @@ export const Description = styled.p`
   font-family: 'Roboto';
   font-weight: 600;
   color: ${props => (props.darkColor ? '#ebebeb' : '#64748b')};
-   @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px){
     display: none;
   };
 `

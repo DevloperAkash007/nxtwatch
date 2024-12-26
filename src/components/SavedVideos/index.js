@@ -28,8 +28,8 @@ class SavedVideos extends Component {
           return (
             <NoSavedVideoContainer>
               <NoSavedVideoImage
-                alt="no saved videos"
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
+                alt='no saved videos'
+                src='https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png'
               />
               <NoSavedVideoHeading darkColor={darkTheme}>
                 No saved videos found
@@ -55,9 +55,9 @@ class SavedVideos extends Component {
           }
           return (
             <>
-              <LogoWithTextContainer data-testid="banner" darkColor={darkTheme}>
+              <LogoWithTextContainer data-testid='banner' darkColor={darkTheme}>
                 <LogoBackground darkColor={darkTheme}>
-                  <HiFire size="40" color="#ff0000" />
+                  <HiFire size='40' color='#ff0000' />
                 </LogoBackground>
                 <Heading darkColor={darkTheme}>Saved Videos</Heading>
               </LogoWithTextContainer>
@@ -82,14 +82,11 @@ class SavedVideos extends Component {
             changeActiveSide('SAVED-VIDEOS')
           }
           return (
-            <SavedVideosRoute darkColor={darkTheme}>
+            <SavedVideosRoute data-testid='savedVideos' darkColor={darkTheme}>
               <Headers />
               <ResponsiveContainer>
                 <Sidebar />
-                <SavedVideosContainer
-                  data-testid="savedVideos"
-                  darkColor={darkTheme}
-                >
+                <SavedVideosContainer darkColor={darkTheme}>
                   {this.renderViews()}
                 </SavedVideosContainer>
               </ResponsiveContainer>

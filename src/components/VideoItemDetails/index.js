@@ -267,13 +267,24 @@ class VideoItemDetails extends Component {
                       size="20"
                       color={alreadySavedorNot ? '#2563eb' : '#64748b'}
                     />
-                    <UserBtn
-                      type="button"
-                      onClick={saveVideoItem}
-                      isSave={alreadySavedorNot}
-                    >
-                      {alreadySavedorNot ? 'Saved' : 'Save'}
-                    </UserBtn>
+
+                    {alreadySavedorNot ? (
+                      <UserBtn
+                        type="button"
+                        onClick={saveVideoItem}
+                        isSave={alreadySavedorNot}
+                      >
+                        Saved
+                      </UserBtn>
+                    ) : (
+                      <UserBtn
+                        type="button"
+                        onClick={saveVideoItem}
+                        isSave={alreadySavedorNot}
+                      >
+                        Save
+                      </UserBtn>
+                    )}
                   </LDS>
                 </LikesDisLikesSaveContainer>
               </UserActionsContainer>

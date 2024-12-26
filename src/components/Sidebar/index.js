@@ -35,107 +35,105 @@ const sides = [
 ]
 
 class Sidebar extends Component {
-  renderNavLink = item => {
-    return (
-      <ThemeContext.Consumer key={`section${item.id}`}>
-        {value => {
-          const {activeSide, changeActiveSide, darkTheme} = value
+  renderNavLink = item => (
+    <ThemeContext.Consumer key={`section${item.id}`}>
+      {value => {
+        const {activeSide, changeActiveSide, darkTheme} = value
 
-          const {id, name} = item
+        const {id, name} = item
 
-          const onClickRouteButton = () => {
-            changeActiveSide(id)
-          }
+        const onClickRouteButton = () => {
+          changeActiveSide(id)
+        }
 
-          let icon = ''
-          switch (id) {
-            case 'HOME':
-              icon = (
-                <AiFillHome
-                  color={
-                    darkTheme
-                      ? activeSide === sides[0].id
-                        ? '#ff0000'
-                        : '#ffffff'
-                      : activeSide === sides[0].id
+        let icon = ''
+        switch (id) {
+          case 'HOME':
+            icon = (
+              <AiFillHome
+                color={
+                  darkTheme
+                    ? activeSide === sides[0].id
                       ? '#ff0000'
-                      : '#000000'
-                  }
-                  size="20"
-                />
-              )
-              break
-            case 'TRENDING':
-              icon = (
-                <HiFire
-                  color={
-                    darkTheme
-                      ? activeSide === sides[1].id
-                        ? '#ff0000'
-                        : '#ffffff'
-                      : activeSide === sides[1].id
+                      : '#ffffff'
+                    : activeSide === sides[0].id
+                    ? '#ff0000'
+                    : '#000000'
+                }
+                size="20"
+              />
+            )
+            break
+          case 'TRENDING':
+            icon = (
+              <HiFire
+                color={
+                  darkTheme
+                    ? activeSide === sides[1].id
                       ? '#ff0000'
-                      : '#000000'
-                  }
-                  size="20"
-                />
-              )
-              break
-            case 'GAMING':
-              icon = (
-                <SiYoutubegaming
-                  color={
-                    darkTheme
-                      ? activeSide === sides[2].id
-                        ? '#ff0000'
-                        : '#ffffff'
-                      : activeSide === sides[2].id
+                      : '#ffffff'
+                    : activeSide === sides[1].id
+                    ? '#ff0000'
+                    : '#000000'
+                }
+                size="20"
+              />
+            )
+            break
+          case 'GAMING':
+            icon = (
+              <SiYoutubegaming
+                color={
+                  darkTheme
+                    ? activeSide === sides[2].id
                       ? '#ff0000'
-                      : '#000000'
-                  }
-                  size="20"
-                />
-              )
-              break
-            case 'SAVED-VIDEOS':
-              icon = (
-                <RiPlayListAddFill
-                  color={
-                    darkTheme
-                      ? activeSide === sides[3].id
-                        ? '#ff0000'
-                        : '#ffffff'
-                      : activeSide === sides[3].id
+                      : '#ffffff'
+                    : activeSide === sides[2].id
+                    ? '#ff0000'
+                    : '#000000'
+                }
+                size="20"
+              />
+            )
+            break
+          case 'SAVED-VIDEOS':
+            icon = (
+              <RiPlayListAddFill
+                color={
+                  darkTheme
+                    ? activeSide === sides[3].id
                       ? '#ff0000'
-                      : '#000000'
-                  }
-                  size="20"
-                />
-              )
-              break
-            default:
-              null
-          }
+                      : '#ffffff'
+                    : activeSide === sides[3].id
+                    ? '#ff0000'
+                    : '#000000'
+                }
+                size="20"
+              />
+            )
+            break
+          default:
+            null
+        }
 
-          const backgroundColor = activeSide === id
-          const to = `${
-            id.toLocaleLowerCase() === 'home' ? '/' : id.toLocaleLowerCase()
-          }`
+        const backgroundColor = activeSide === id
+        const to = `${
+          id.toLocaleLowerCase() === 'home' ? '/' : id.toLocaleLowerCase()
+        }`
 
-          return (
-            <LinkItem to={to} key={id}>
-              <NavItem backgroundColor={backgroundColor} darkTheme={darkTheme}>
-                <LinkButton type="button" onClick={onClickRouteButton}>
-                  {icon}
-                  <NavItemName darkTheme={darkTheme}>{name}</NavItemName>
-                </LinkButton>
-              </NavItem>
-            </LinkItem>
-          )
-        }}
-      </ThemeContext.Consumer>
-    )
-  }
+        return (
+          <LinkItem to={to} key={id}>
+            <NavItem backgroundColor={backgroundColor} darkTheme={darkTheme}>
+              <LinkButton type="button" onClick={onClickRouteButton}>
+                {icon}
+                <NavItemName darkTheme={darkTheme}>{name}</NavItemName>
+              </LinkButton>
+            </NavItem>
+          </LinkItem>
+        )
+      }}
+    </ThemeContext.Consumer>
+  )
 
   render() {
     return (

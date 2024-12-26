@@ -85,8 +85,8 @@ class App extends Component {
             component={VideoItemDetails}
           />
           <ProtectedRoute exact path="/saved-videos" component={SavedVideos} />
-          <ProtectedRoute exact path="/bad-path" component={NotFound} />
-          <Redirect to="/bat-path" />
+          <Route exact path="/not-found" component={NotFound} />
+          <Redirect to="/not-found" />
         </Switch>
       </ThemeContext.Provider>
     )
