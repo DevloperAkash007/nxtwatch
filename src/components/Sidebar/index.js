@@ -117,8 +117,8 @@ class Sidebar extends Component {
         }
 
         const backgroundColor = activeSide === id
-        const to = `${
-          id.toLocaleLowerCase() === 'home' ? '/' : id.toLocaleLowerCase()
+        const to = `/${
+          id.toLocaleLowerCase() === 'home' ? '' : id.toLocaleLowerCase()
         }`
 
         return (
