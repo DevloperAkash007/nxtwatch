@@ -80,7 +80,7 @@ class Home extends Component {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },
-      mathod: 'GET',
+      method: 'GET',
     }
     const response = await fetch(apiUrl, options)
     if (response.ok) {
