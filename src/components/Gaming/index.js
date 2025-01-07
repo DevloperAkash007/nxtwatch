@@ -108,18 +108,11 @@ class Gaming extends Component {
   }
 
   renderLoader = () => (
-    <ThemeContext.Consumer>
-      {value => {
-        const {darkTheme} = value
-        return (
-          <LoaderContainer>
-            <div className="loader-container" data-testid="loader">
-              <Loader type="ThreeDots" color="#3b82f6" height="50" width="50" />
-            </div>
-          </LoaderContainer>
-        )
-      }}
-    </ThemeContext.Consumer>
+    <LoaderContainer>
+      <div className="loader-container" data-testid="loader">
+        <Loader type="ThreeDots" color="#3b82f6" height="50" width="50" />
+      </div>
+    </LoaderContainer>
   )
 
   renderSuccessView = () => {

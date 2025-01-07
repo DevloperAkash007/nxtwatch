@@ -20,58 +20,54 @@ import {
 } from './StyledComponents'
 
 class SavedVideos extends Component {
-  noSavedVideosView = () => {
-    return (
-      <ThemeContext.Consumer>
-        {value => {
-          const {darkTheme} = value
-          return (
-            <NoSavedVideoContainer>
-              <NoSavedVideoImage
-                alt='no saved videos'
-                src='https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png'
-              />
-              <NoSavedVideoHeading darkColor={darkTheme}>
-                No saved videos found
-              </NoSavedVideoHeading>
-              <NoSavedVideoText darkColor={darkTheme}>
-                You can save your videos while watching them
-              </NoSavedVideoText>
-            </NoSavedVideoContainer>
-          )
-        }}
-      </ThemeContext.Consumer>
-    )
-  }
+  noSavedVideosView = () => (
+    <ThemeContext.Consumer>
+      {value => {
+        const {darkTheme} = value
+        return (
+          <NoSavedVideoContainer>
+            <NoSavedVideoImage
+              alt="no saved videos"
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
+            />
+            <NoSavedVideoHeading darkColor={darkTheme}>
+              No saved videos found
+            </NoSavedVideoHeading>
+            <NoSavedVideoText darkColor={darkTheme}>
+              You can save your videos while watching them
+            </NoSavedVideoText>
+          </NoSavedVideoContainer>
+        )
+      }}
+    </ThemeContext.Consumer>
+  )
 
-  renderViews = () => {
-    return (
-      <ThemeContext.Consumer>
-        {value => {
-          const {savedVideosList, darkTheme} = value
+  renderViews = () => (
+    <ThemeContext.Consumer>
+      {value => {
+        const {savedVideosList, darkTheme} = value
 
-          if (savedVideosList.length === 0) {
-            return this.noSavedVideosView()
-          }
-          return (
-            <>
-              <LogoWithTextContainer data-testid='banner' darkColor={darkTheme}>
-                <LogoBackground darkColor={darkTheme}>
-                  <HiFire size='40' color='#ff0000' />
-                </LogoBackground>
-                <Heading darkColor={darkTheme}>Saved Videos</Heading>
-              </LogoWithTextContainer>
-              <VideosContainer>
-                {savedVideosList.map(item => (
-                  <SavedVideoItem key={item.id} videoItem={item} />
-                ))}
-              </VideosContainer>
-            </>
-          )
-        }}
-      </ThemeContext.Consumer>
-    )
-  }
+        if (savedVideosList.length === 0) {
+          return this.noSavedVideosView()
+        }
+        return (
+          <>
+            <LogoWithTextContainer data-testid="banner" darkColor={darkTheme}>
+              <LogoBackground darkColor={darkTheme}>
+                <HiFire size="40" color="#ff0000" />
+              </LogoBackground>
+              <Heading darkColor={darkTheme}>Saved Videos</Heading>
+            </LogoWithTextContainer>
+            <VideosContainer>
+              {savedVideosList.map(item => (
+                <SavedVideoItem key={item.id} videoItem={item} />
+              ))}
+            </VideosContainer>
+          </>
+        )
+      }}
+    </ThemeContext.Consumer>
+  )
 
   render() {
     return (
@@ -82,7 +78,7 @@ class SavedVideos extends Component {
             changeActiveSide('SAVED-VIDEOS')
           }
           return (
-            <SavedVideosRoute data-testid='savedVideos' darkColor={darkTheme}>
+            <SavedVideosRoute data-testid="savedVideos" darkColor={darkTheme}>
               <Headers />
               <ResponsiveContainer>
                 <Sidebar />

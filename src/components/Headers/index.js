@@ -35,7 +35,6 @@ import {
   PopupDisplayContainerForMenu,
   RoutingContainer,
   RouteLink,
-  RoutingButton,
 } from './StyledComponents'
 
 const sides = [
@@ -53,19 +52,32 @@ const profile =
   'https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png'
 
 class Headers extends Component {
+  overcomeBackgroundColorOfSides = (darkTheme, activeSide, sideId) => {
+    if (activeSide === sideId) {
+      return '#ff0000'
+    }
+    if (darkTheme) {
+      return '616e7c'
+    }
+    return '#000000'
+  }
+
   render() {
     return (
       <ThemeContext.Consumer>
         {value => {
           const {darkTheme, changeTheme, activeSide, changeActiveSide} = value
+
           const onClickLogoutButton = () => {
             const {history} = this.props
             Cookies.remove('jwt_token')
             history.replace('/login')
           }
+
           const onChangeActiveSide = event => {
             changeActiveSide(event.target.value)
           }
+
           return (
             <NavBar darkTheme={darkTheme}>
               <NavContainer>
@@ -133,17 +145,23 @@ class Headers extends Component {
                 </NavLinksContainer>
                 <NavLinksContainerForSmallDevices>
                   <NavLinkList>
-                    <ThemeButton
-                      type="button"
-                      data-testid="theme"
-                      onClick={() => changeTheme()}
-                    >
-                      {darkTheme ? (
+                    {darkTheme ? (
+                      <ThemeButton
+                        type="button"
+                        data-testid="theme"
+                        onClick={() => changeTheme()}
+                      >
                         <TiWeatherSunny color="#ffffff" size="40" />
-                      ) : (
+                      </ThemeButton>
+                    ) : (
+                      <ThemeButton
+                        type="button"
+                        data-testid="theme"
+                        onClick={() => changeTheme()}
+                      >
                         <FaMoon color="#000000" size="30" />
-                      )}
-                    </ThemeButton>
+                      </ThemeButton>
+                    )}
                   </NavLinkList>
                   <NavLinkList>
                     <Popup
@@ -176,23 +194,17 @@ class Headers extends Component {
                                 onClick={() => changeActiveSide(sides[0].id)}
                                 activeSide={activeSide === sides[0].id}
                               >
-                                <RoutingButton type="button">
-                                  <AiFillHome
-                                    size="30"
-                                    color={
-                                      darkTheme
-                                        ? activeSide === sides[0].id
-                                          ? '#ff0000'
-                                          : '616e7c'
-                                        : activeSide === sides[0].id
-                                        ? '#ff0000'
-                                        : '#000000'
-                                    }
-                                  />
-                                  <RouteText darkTheme={darkTheme}>
-                                    Home
-                                  </RouteText>
-                                </RoutingButton>
+                                <AiFillHome
+                                  size="30"
+                                  color={this.overcomeBackgroundColorOfSides(
+                                    darkTheme,
+                                    activeSide,
+                                    sides[0].id,
+                                  )}
+                                />
+                                <RouteText darkTheme={darkTheme}>
+                                  Home
+                                </RouteText>
                               </RouteLink>
                             </Link>
                             <Link to="/trending" className="link">
@@ -201,23 +213,17 @@ class Headers extends Component {
                                 activeSide={activeSide === sides[1].id}
                                 onClick={() => changeActiveSide(sides[1].id)}
                               >
-                                <RoutingButton type="button">
-                                  <HiFire
-                                    size="30"
-                                    color={
-                                      darkTheme
-                                        ? activeSide === sides[1].id
-                                          ? '#ff0000'
-                                          : '616e7c'
-                                        : activeSide === sides[1].id
-                                        ? '#ff0000'
-                                        : '#000000'
-                                    }
-                                  />
-                                  <RouteText darkTheme={darkTheme}>
-                                    Trending
-                                  </RouteText>
-                                </RoutingButton>
+                                <HiFire
+                                  size="30"
+                                  color={this.overcomeBackgroundColorOfSides(
+                                    darkTheme,
+                                    activeSide,
+                                    sides[1].id,
+                                  )}
+                                />
+                                <RouteText darkTheme={darkTheme}>
+                                  Trending
+                                </RouteText>
                               </RouteLink>
                             </Link>
                             <Link to="/gaming" className="link">
@@ -226,23 +232,17 @@ class Headers extends Component {
                                 activeSide={activeSide === sides[2].id}
                                 onClick={() => changeActiveSide(sides[2].id)}
                               >
-                                <RoutingButton type="button">
-                                  <SiYoutubegaming
-                                    size="30"
-                                    color={
-                                      darkTheme
-                                        ? activeSide === sides[2].id
-                                          ? '#ff0000'
-                                          : '616e7c'
-                                        : activeSide === sides[2].id
-                                        ? '#ff0000'
-                                        : '#000000'
-                                    }
-                                  />
-                                  <RouteText darkTheme={darkTheme}>
-                                    Gaming
-                                  </RouteText>
-                                </RoutingButton>
+                                <SiYoutubegaming
+                                  size="30"
+                                  color={this.overcomeBackgroundColorOfSides(
+                                    darkTheme,
+                                    activeSide,
+                                    sides[2].id,
+                                  )}
+                                />
+                                <RouteText darkTheme={darkTheme}>
+                                  Gaming
+                                </RouteText>
                               </RouteLink>
                             </Link>
                             <Link to="/saved-videos" className="link">
@@ -251,23 +251,17 @@ class Headers extends Component {
                                 activeSide={activeSide === sides[3].id}
                                 onClick={() => changeActiveSide(sides[3].id)}
                               >
-                                <RoutingButton type="button">
-                                  <RiPlayListAddFill
-                                    size="30"
-                                    color={
-                                      darkTheme
-                                        ? activeSide === sides[3].id
-                                          ? '#ff0000'
-                                          : '616e7c'
-                                        : activeSide === sides[3].id
-                                        ? '#ff0000'
-                                        : '#000000'
-                                    }
-                                  />
-                                  <RouteText darkTheme={darkTheme}>
-                                    Saved Videos
-                                  </RouteText>
-                                </RoutingButton>
+                                <RiPlayListAddFill
+                                  size="30"
+                                  color={this.overcomeBackgroundColorOfSides(
+                                    darkTheme,
+                                    activeSide,
+                                    sides[3].id,
+                                  )}
+                                />
+                                <RouteText darkTheme={darkTheme}>
+                                  Saved Videos
+                                </RouteText>
                               </RouteLink>
                             </Link>
                           </RoutingContainer>

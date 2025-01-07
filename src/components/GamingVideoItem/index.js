@@ -1,11 +1,6 @@
+import {Link} from 'react-router-dom'
 import ThemeContext from '../../context/ThemeContext'
-import {
-  LinkItem,
-  ListItem,
-  ThumbnailUrl,
-  Title,
-  ViewConut,
-} from './StyledComponents'
+import {ListItem, ThumbnailUrl, Title, ViewConut} from './StyledComponents'
 
 const TrendinVideoItem = props => {
   const {videoItem} = props
@@ -16,16 +11,15 @@ const TrendinVideoItem = props => {
       {value => {
         const {darkTheme} = value
         return (
-          <LinkItem to={`/videos/${id}`}>
-            <ListItem>
+          <ListItem>
+            <Link to={`/videos/${id}`}>
               <ThumbnailUrl alt="video thumbnail" src={thumbnailUrl} />
-
               <Title darkTheme={darkTheme}>{title}</Title>
               <ViewConut darkTheme={darkTheme}>
                 {viewCount} Watching Worldwide
               </ViewConut>
-            </ListItem>
-          </LinkItem>
+            </Link>
+          </ListItem>
         )
       }}
     </ThemeContext>

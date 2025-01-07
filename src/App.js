@@ -28,7 +28,7 @@ class App extends Component {
   addSavedVideo = videoItem => {
     const {savedVideosList} = this.state
     const isPresent = savedVideosList.find(each => each.id === videoItem.id)
-    console.log(isPresent)
+
     if (isPresent === undefined) {
       this.setState(prevState => ({
         savedVideosList: [...prevState.savedVideosList, videoItem],

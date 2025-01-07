@@ -37,25 +37,23 @@ const SavedVideoItem = props => {
         return (
           <ListItem>
             <LinkItem to={`/videos/${id}`}>
-              <ListItem>
-                <ThumbnailUrlContainer>
-                  <ThumbnailUrl alt="video thumbnail" src={thumbnailUrl} />
-                </ThumbnailUrlContainer>
-                <ContentContainer>
-                  <TextContainer>
-                    <Title darkTheme={darkTheme}>{title}</Title>
-                    <Name darkTheme={darkTheme}>{name}</Name>
-                    <ViewAndPublishedContainer>
-                      <ViewConut darkTheme={darkTheme}>
-                        {viewCount} views
-                      </ViewConut>
-                      <PublishedAt darkTheme={darkTheme}>
-                        {requiedFormatTime}
-                      </PublishedAt>
-                    </ViewAndPublishedContainer>
-                  </TextContainer>
-                </ContentContainer>
-              </ListItem>
+              <ThumbnailUrlContainer>
+                <ThumbnailUrl alt="video thumbnail" src={thumbnailUrl} />
+              </ThumbnailUrlContainer>
+              <ContentContainer>
+                <TextContainer>
+                  <Title darkTheme={darkTheme}>{title}</Title>
+                  <Name darkTheme={darkTheme}>{name}</Name>
+                  <ViewAndPublishedContainer>
+                    <ViewConut darkTheme={darkTheme}>
+                      {viewCount} views
+                    </ViewConut>
+                    <PublishedAt darkTheme={darkTheme}>
+                      {requiedFormatTime}
+                    </PublishedAt>
+                  </ViewAndPublishedContainer>
+                </TextContainer>
+              </ContentContainer>
             </LinkItem>
           </ListItem>
         )

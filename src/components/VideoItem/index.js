@@ -1,5 +1,7 @@
+import {Link} from 'react-router-dom'
 import {formatDistanceToNow} from 'date-fns'
 import ThemeContext from '../../context/ThemeContext'
+import './index.css'
 import {
   LinkItem,
   ListItem,
@@ -35,8 +37,8 @@ const VideoItem = props => {
       {value => {
         const {darkTheme} = value
         return (
-          <LinkItem to={`/videos/${id}`}>
-            <ListItem>
+          <ListItem>
+            <Link className="link-router-element" to={`/videos/${id}`}>
               <ThumbnailUrl alt="video thumbnail" src={thumbnailUrl} />
               <ContentContainer>
                 <ProfileImageUrl alt="channel logo" src={profileImageUrl} />
@@ -53,8 +55,8 @@ const VideoItem = props => {
                   </ViewAndPublishedContainer>
                 </TextContainer>
               </ContentContainer>
-            </ListItem>
-          </LinkItem>
+            </Link>
+          </ListItem>
         )
       }}
     </ThemeContext>

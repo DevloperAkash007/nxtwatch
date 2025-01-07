@@ -55,6 +55,7 @@ class VideoItemDetails extends Component {
     videoItemDetails: {},
     isLike: false,
     isDisLike: false,
+    isSave: false,
   }
 
   componentDidMount() {
@@ -83,25 +84,29 @@ class VideoItemDetails extends Component {
     const {id} = params
     const jwtToken = Cookies.get('jwt_token')
     const apiUrl = `https://apis.ccbp.in/videos/${id}`
-    const options = {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-      method: 'GET',
-    }
-    const response = await fetch(apiUrl, options)
-    if (response.ok) {
-      const data = await response.json()
-      const videoDetails = data.video_details
-      const formmatedVideoDetails = this.getFormattedData(videoDetails)
-      this.setState({
-        videoItemDetails: formmatedVideoDetails,
-        apiStatus: apiStatusConstands.success,
-      })
-    } else {
-      this.setState({
-        apiStatus: apiStatusConstands.failure,
-      })
+    try {
+      const options = {
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+        method: 'GET',
+      }
+      const response = await fetch(apiUrl, options)
+      if (response.ok) {
+        const data = await response.json()
+        const videoDetails = data.video_details
+        const formmatedVideoDetails = this.getFormattedData(videoDetails)
+        this.setState({
+          videoItemDetails: formmatedVideoDetails,
+          apiStatus: apiStatusConstands.success,
+        })
+      } else {
+        this.setState({
+          apiStatus: apiStatusConstands.failure,
+        })
+      }
+    } catch (err) {
+      console.log(err)
     }
   }
 
@@ -167,147 +172,134 @@ class VideoItemDetails extends Component {
     return `${timeformtalist[1]}  ${timeformtalist[2]} ago`
   }
 
-  renderVideoItemDetailsOnSuccessView = () => {
-    return (
-      <ThemeContext.Consumer>
-        {value => {
-          const {darkTheme, savedVideosList, addSavedVideo, removeSavedVideo} =
-            value
-          const {videoItemDetails, isLike, isDisLike} = this.state
+  renderVideoItemDetailsOnSuccessView = () => (
+    <ThemeContext.Consumer>
+      {value => {
+        const {
+          darkTheme,
+          savedVideosList,
+          addSavedVideo,
+          removeSavedVideo,
+        } = value
+        const {videoItemDetails, isLike, isDisLike, isSave} = this.state
 
-          const {
-            id,
-            description,
-            publishedAt,
-            videoUrl,
-            title,
-            viewCount,
-            thumbnailUrl,
-            channel,
-          } = videoItemDetails
+        const {
+          id,
+          description,
+          publishedAt,
+          videoUrl,
+          title,
+          viewCount,
+          thumbnailUrl,
+          channel,
+        } = videoItemDetails
 
-          const {name, profileImageUrl, subscriberCount} = channel
+        const {name, profileImageUrl, subscriberCount} = channel
 
-          const requiredPublishedAt = this.getPublishedAtTime(publishedAt)
+        const requiredPublishedAt = this.getPublishedAtTime(publishedAt)
 
-          const alreadySavedorNot =
-            savedVideosList.find(item => item.id === id) !== undefined
+        const alreadySavedorNot =
+          savedVideosList.find(item => item.id === id) !== undefined
 
-          const saveVideoItem = () => {
-            if (!alreadySavedorNot) {
-              addSavedVideo(videoItemDetails)
-            } else {
-              removeSavedVideo(id)
-            }
+        const saveVideoItem = () => {
+          this.setState(prevState => ({isSave: !prevState.isSave}))
+          if (!alreadySavedorNot) {
+            addSavedVideo(videoItemDetails)
+          } else {
+            removeSavedVideo(id)
           }
+        }
 
-          const onClickLike = () => {
-            const {isLike, isDisLike} = this.state
-            if (isDisLike) {
-              this.setState({isDisLike: false, isLike: true})
-            } else {
-              this.setState(prevState => ({isLike: !prevState.isLike}))
-            }
+        const onClickLike = () => {
+          if (isDisLike) {
+            this.setState({isDisLike: false})
           }
+          this.setState(prevState => ({isLike: !prevState.isLike}))
+        }
 
-          const onClickDisLike = () => {
-            const {isLike} = this.state
-            if (isLike) {
-              this.setState({
-                isLike: false,
-                isDisLike: true,
-              })
-            } else {
-              this.setState(prevState => ({isDisLike: !prevState.isDisLike}))
-            }
+        const onClickDisLike = () => {
+          if (isLike) {
+            this.setState({
+              isLike: false,
+            })
           }
+          this.setState(prevState => ({isDisLike: !prevState.isDisLike}))
+        }
 
-          return (
-            <VideoContentContainer>
-              <ReactPlayer
-                width="100%"
-                height="400px"
-                url={videoUrl}
-                light={<ThumbnailUrlImage src={thumbnailUrl} alt="Thumbnail" />}
-              />
-              <VideoTitle darkColor={darkTheme}>{title}</VideoTitle>
-              <UserActionsContainer>
-                <ViewsAndPublishedAtContainer>
-                  <Views darkColor={darkTheme}>{viewCount} views</Views>
-                  <Published darkColor={darkTheme}>
-                    {requiredPublishedAt}
-                  </Published>
-                </ViewsAndPublishedAtContainer>
-                <LikesDisLikesSaveContainer>
-                  <LDS>
-                    <BiLike size="25" color={isLike ? '#2563eb' : '#64748b'} />
-                    <UserLikeBtn
-                      type="button"
-                      onClick={onClickLike}
-                      isLike={isLike}
-                    >
-                      Like
-                    </UserLikeBtn>
-                  </LDS>
-                  <LDS>
-                    <BiDislike
-                      size="25"
-                      color={isDisLike ? '#2563eb' : '#64748b'}
-                    />
-                    <UserDislikeBtn
-                      type="button"
-                      onClick={onClickDisLike}
-                      isDisLike={isDisLike}
-                    >
-                      Dislike
-                    </UserDislikeBtn>
-                  </LDS>
-                  <LDS>
-                    <RiPlayListAddFill
-                      size="20"
-                      color={alreadySavedorNot ? '#2563eb' : '#64748b'}
-                    />
+        return (
+          <VideoContentContainer>
+            <ReactPlayer
+              width="100%"
+              height="500px"
+              url={videoUrl}
+              light={<ThumbnailUrlImage src={thumbnailUrl} alt="Thumbnail" />}
+            />
 
-                    {alreadySavedorNot ? (
-                      <UserBtn
-                        type="button"
-                        onClick={saveVideoItem}
-                        isSave={alreadySavedorNot}
-                      >
-                        Saved
-                      </UserBtn>
-                    ) : (
-                      <UserBtn
-                        type="button"
-                        onClick={saveVideoItem}
-                        isSave={alreadySavedorNot}
-                      >
-                        Save
-                      </UserBtn>
-                    )}
-                  </LDS>
-                </LikesDisLikesSaveContainer>
-              </UserActionsContainer>
-              <HorizontalLine />
-              <ProfileContainer>
-                <ProfileImage alt="channel logo" src={profileImageUrl} />
-                <Content>
-                  <Name darkColor={darkTheme}>{name}</Name>
-                  <SubscriberCount darkColor={darkTheme}>
-                    {subscriberCount} subscribers
-                  </SubscriberCount>
-                  <Description darkColor={darkTheme}>{description}</Description>
-                </Content>
-              </ProfileContainer>
-              <DescriptionForSmDevices darkColor={darkTheme}>
-                {description}
-              </DescriptionForSmDevices>
-            </VideoContentContainer>
-          )
-        }}
-      </ThemeContext.Consumer>
-    )
-  }
+            <VideoTitle darkColor={darkTheme}>{title}</VideoTitle>
+
+            <UserActionsContainer>
+              <ViewsAndPublishedAtContainer>
+                <Views darkColor={darkTheme}>{viewCount} views</Views>
+                <Published darkColor={darkTheme}>
+                  {requiredPublishedAt}
+                </Published>
+              </ViewsAndPublishedAtContainer>
+              <LikesDisLikesSaveContainer>
+                <BiLike size="25" color={isLike ? '#2563eb' : '#64748b'} />
+                <UserBtn type="button" onClick={onClickLike} status={isLike}>
+                  Like
+                </UserBtn>
+                <BiDislike
+                  size="25"
+                  color={isDisLike ? '#2563eb' : '#64748b'}
+                />
+                <UserBtn
+                  type="button"
+                  onClick={onClickDisLike}
+                  status={isDisLike}
+                >
+                  Dislike
+                </UserBtn>
+                <RiPlayListAddFill
+                  size="20"
+                  color={alreadySavedorNot ? '#2563eb' : '#64748b'}
+                />
+                {alreadySavedorNot && (
+                  <UserBtn
+                    type="button"
+                    onClick={saveVideoItem}
+                    status={alreadySavedorNot}
+                  >
+                    Saved
+                  </UserBtn>
+                )}
+                {!alreadySavedorNot && (
+                  <UserBtn
+                    type="button"
+                    onClick={saveVideoItem}
+                    isSave={alreadySavedorNot}
+                  >
+                    Save
+                  </UserBtn>
+                )}
+              </LikesDisLikesSaveContainer>
+            </UserActionsContainer>
+            <HorizontalLine />
+            <ProfileContainer>
+              <ProfileImage alt="channel logo" src={profileImageUrl} />
+              <Content>
+                <Name darkColor={darkTheme}>{name}</Name>
+                <SubscriberCount darkColor={darkTheme}>
+                  {subscriberCount} subscribers
+                </SubscriberCount>
+                <Description darkColor={darkTheme}>{description}</Description>
+              </Content>
+            </ProfileContainer>
+          </VideoContentContainer>
+        )
+      }}
+    </ThemeContext.Consumer>
+  )
 
   renderView = () => {
     const {apiStatus} = this.state
@@ -324,20 +316,19 @@ class VideoItemDetails extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <ThemeContext.Consumer>
         {value => {
           const {darkTheme} = value
           return (
-            <VideoItemDetailsRoute darkTheme={darkTheme}>
+            <VideoItemDetailsRoute
+              data-testid="videoItemDetails"
+              darkTheme={darkTheme}
+            >
               <Headers />
               <ResponsiveContainer>
                 <Sidebar />
-                <VideoItemDetailsContainer
-                  data-testid="videoItemDetails"
-                  darkTheme={darkTheme}
-                >
+                <VideoItemDetailsContainer darkTheme={darkTheme}>
                   {this.renderView()}
                 </VideoItemDetailsContainer>
               </ResponsiveContainer>

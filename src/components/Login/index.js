@@ -96,13 +96,21 @@ class Login extends Component {
       <ThemeContent.Consumer>
         {value => {
           const {darkTheme} = value
-          const {showErrMsg, errorMsg, username, password, showPassword} =
-            this.state
+          const {
+            showErrMsg,
+            errorMsg,
+            username,
+            password,
+            showPassword,
+          } = this.state
 
           return (
             <LoginBackground darkTheme={darkTheme}>
               <LoginForm darkTheme={darkTheme} onSubmit={this.submitForm}>
-                <LogoImage alt="website logo" src={darkTheme ? darkLogoImage : lightLogoImage} />
+                <LogoImage
+                  alt="website logo"
+                  src={darkTheme ? darkLogoImage : lightLogoImage}
+                />
                 <InputContainer>
                   <Label darkTheme={darkTheme} htmlFor="Username">
                     USERNAME

@@ -80,7 +80,7 @@ class Home extends Component {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },
-      mathod: 'GET',
+      method: 'GET',
     }
     const response = await fetch(apiUrl, options)
     if (response.ok) {
@@ -130,27 +130,16 @@ class Home extends Component {
 
   renderSuccessView = () => {
     const {videosList} = this.state
-    const clickNoSearchRetryBtn = () => this.getVideos()
-    const isEmptyView = videosList.length === 0
-    if (!isEmptyView) {
-      return (
-        <>
-          {this.renderInput()}
-          <VideosContainer>
-            {videosList.map(item => (
-              <VideoItem key={item.id} videoItem={item} />
-            ))}
-          </VideosContainer>
-        </>
-      )
+    const clickNoSearchRetryBtn = () => {
+      this.getVideos()
     }
-    return (
+    const isEmptyView = videosList.length === 0
+    const renderSuccess = isEmptyView ? (
       <ThemeContext.Consumer>
         {value => {
           const {darkTheme} = value
           return (
             <>
-              {this.renderInput()}
               <NoSearchResultContainer>
                 <NoSearchImage
                   alt="no videos"
@@ -162,19 +151,47 @@ class Home extends Component {
                 <NoSearchText darkColor={darkTheme}>
                   Try different key words or remove search filter
                 </NoSearchText>
-                <NoSearchRetryBtn
+                <FailureViewRetryBtn
                   type="button"
                   onClick={clickNoSearchRetryBtn}
-                  darkColor={darkTheme}
                 >
                   Retry
-                </NoSearchRetryBtn>
+                </FailureViewRetryBtn>
               </NoSearchResultContainer>
             </>
           )
         }}
       </ThemeContext.Consumer>
+    ) : (
+      <VideosContainer>
+        {videosList.map(item => (
+          <VideoItem key={item.id} videoItem={item} />
+        ))}
+      </VideosContainer>
     )
+
+    return (
+      <>
+        {this.renderInput()}
+        {renderSuccess}
+      </>
+    )
+    // if (!isEmptyView) {
+    //   return (
+    //     <>
+    //       {this.renderInput()}
+    //       <VideosContainer>
+    //         {videosList.map(item => (
+    //           <VideoItem key={item.id} videoItem={item} />
+    //         ))}
+    //       </VideosContainer>
+    //     </>
+    //   )
+    // } else {
+    //   return (
+
+    //   )
+    // }
   }
 
   renderFailureView = () => {

@@ -3,27 +3,37 @@ import {Link} from 'react-router-dom'
 
 export const LinkItem = styled(Link)`
   text-decoration: none;
-`
-
-export const ListItem = styled.li`
-  width: 90%;
   display: flex;
   margin-bottom: 20px;
   margin-right: 40px;
   margin-left: 40px;
-  @media screen and (max-width: 576px){
+  @media screen and (max-width: 576px) {
     flex-direction: column;
     width: 100%;
     margin-right: 0px;
     margin-left: 0px;
-  };
+  } ;
+`
+
+export const ListItem = styled.li`
+  width: 100%;
+  // display: flex;
+  // margin-bottom: 20px;
+  // margin-right: 40px;
+  // margin-left: 40px;
+  // @media screen and (max-width: 576px){
+  //   flex-direction: column;
+  //   width: 100%;
+  //   margin-right: 0px;
+  //   margin-left: 0px;
+  // };
 `
 
 export const ThumbnailUrlContainer = styled.div`
   width: 45%;
-  @media screen and (max-width: 576px){
+  @media screen and (max-width: 576px) {
     width: 100%;
-  };
+  } ;
 `
 
 export const ThumbnailUrl = styled.img`
@@ -33,10 +43,10 @@ export const ContentContainer = styled.div`
   width: 45%;
   display: flex;
   margin-left: 15px;
-  @media screen and (max-width: 576px){
+  @media screen and (max-width: 576px) {
     width: 100%;
     margin-top: 15px;
-  };
+  } ;
 `
 
 export const TextContainer = styled.div``

@@ -37,7 +37,7 @@ class NotFound extends Component {
                       we are sorry, the page you requested could not be found.
                     </NFParagrap>
                   </MainContainer>
-                </NotFoundContainer> 
+                </NotFoundContainer>
               </ResponsiveContainer>
             </>
           )

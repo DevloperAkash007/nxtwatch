@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {AiFillHome} from 'react-icons/ai'
 import {HiFire} from 'react-icons/hi'
 import {SiYoutubegaming} from 'react-icons/si'
@@ -10,7 +10,7 @@ import {
   SidesSection,
   ContactUsSection,
   NavItem,
-  LinkButton,
+  //  LinkButton,
   LinkItem,
   NavItemName,
   ContactUsHeading,
@@ -35,6 +35,16 @@ const sides = [
 ]
 
 class Sidebar extends Component {
+  overcomeBackgroundColorOfSides = (darkTheme, activeSide, sideId) => {
+    if (activeSide === sideId) {
+      return '#ff0000'
+    }
+    if (darkTheme) {
+      return '#ffffff'
+    }
+    return '#000000'
+  }
+
   renderNavLink = item => (
     <ThemeContext.Consumer key={`section${item.id}`}>
       {value => {
@@ -51,15 +61,11 @@ class Sidebar extends Component {
           case 'HOME':
             icon = (
               <AiFillHome
-                color={
-                  darkTheme
-                    ? activeSide === sides[0].id
-                      ? '#ff0000'
-                      : '#ffffff'
-                    : activeSide === sides[0].id
-                    ? '#ff0000'
-                    : '#000000'
-                }
+                color={this.overcomeBackgroundColorOfSides(
+                  darkTheme,
+                  activeSide,
+                  sides[0].id,
+                )}
                 size="20"
               />
             )
@@ -67,15 +73,11 @@ class Sidebar extends Component {
           case 'TRENDING':
             icon = (
               <HiFire
-                color={
-                  darkTheme
-                    ? activeSide === sides[1].id
-                      ? '#ff0000'
-                      : '#ffffff'
-                    : activeSide === sides[1].id
-                    ? '#ff0000'
-                    : '#000000'
-                }
+                color={this.overcomeBackgroundColorOfSides(
+                  darkTheme,
+                  activeSide,
+                  sides[1].id,
+                )}
                 size="20"
               />
             )
@@ -83,15 +85,11 @@ class Sidebar extends Component {
           case 'GAMING':
             icon = (
               <SiYoutubegaming
-                color={
-                  darkTheme
-                    ? activeSide === sides[2].id
-                      ? '#ff0000'
-                      : '#ffffff'
-                    : activeSide === sides[2].id
-                    ? '#ff0000'
-                    : '#000000'
-                }
+                color={this.overcomeBackgroundColorOfSides(
+                  darkTheme,
+                  activeSide,
+                  sides[2].id,
+                )}
                 size="20"
               />
             )
@@ -99,37 +97,36 @@ class Sidebar extends Component {
           case 'SAVED-VIDEOS':
             icon = (
               <RiPlayListAddFill
-                color={
-                  darkTheme
-                    ? activeSide === sides[3].id
-                      ? '#ff0000'
-                      : '#ffffff'
-                    : activeSide === sides[3].id
-                    ? '#ff0000'
-                    : '#000000'
-                }
+                color={this.overcomeBackgroundColorOfSides(
+                  darkTheme,
+                  activeSide,
+                  sides[3].id,
+                )}
                 size="20"
               />
             )
             break
           default:
-            null
+            return null
         }
 
         const backgroundColor = activeSide === id
-        const to = `${
-          id.toLocaleLowerCase() === 'home' ? '/' : id.toLocaleLowerCase()
+
+        const to = `/${
+          id.toLocaleLowerCase() === 'home' ? '' : id.toLocaleLowerCase()
         }`
 
         return (
-          <LinkItem to={to} key={id}>
-            <NavItem backgroundColor={backgroundColor} darkTheme={darkTheme}>
-              <LinkButton type="button" onClick={onClickRouteButton}>
-                {icon}
-                <NavItemName darkTheme={darkTheme}>{name}</NavItemName>
-              </LinkButton>
-            </NavItem>
-          </LinkItem>
+          <NavItem
+            backgroundColor={backgroundColor}
+            darkTheme={darkTheme}
+            onClick={onClickRouteButton}
+          >
+            <LinkItem to={to} key={id}>
+              {icon}
+              <NavItemName darkTheme={darkTheme}>{name}</NavItemName>
+            </LinkItem>
+          </NavItem>
         )
       }}
     </ThemeContext.Consumer>
@@ -165,4 +162,4 @@ class Sidebar extends Component {
     )
   }
 }
-export default Sidebar
+export default withRouter(Sidebar)

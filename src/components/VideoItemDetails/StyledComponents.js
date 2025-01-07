@@ -42,7 +42,7 @@ export const FailureContainer = styled.div`
 export const FailureImage = styled.img`
   width: 50%;
   max-width: 500px;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     width: 100%;
   }
 `
@@ -93,7 +93,7 @@ export const UserActionsContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
@@ -112,7 +112,6 @@ export const Views = styled.p`
   font-weight: 500;
   color: ${props => (props.darkColor ? '#cccccc' : '#64748b')};
   margin-right: 30px;
-
 `
 export const Published = styled.p`
   font-size: 15px;
@@ -120,23 +119,28 @@ export const Published = styled.p`
   font-weight: 500;
   color: ${props => (props.darkColor ? '#cccccc' : '#64748b')};
   margin-right: 30px;
-
 `
 
-export const LikesDisLikesSaveContainer = styled.ul`
+// export const LikesDisLikesSaveContainer = styled.ul`
+//   display: flex;
+//   align-items: center;
+//   list-style-type: none;
+//   padding: 0px;
+// `
+
+export const LikesDisLikesSaveContainer = styled.div`
   display: flex;
   align-items: center;
   list-style-type: none;
   padding: 0px;
 `
-
 export const LDS = styled.li`
   margin: 0px 10px 0px 10px;
   display: flex;
   align-items: center;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     margin: 0px 10px 0px 0px;
-  };
+  } ;
 `
 
 export const UserBtn = styled.button`
@@ -144,34 +148,28 @@ export const UserBtn = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  color: ${props => (props.isSave ? '#2563eb' : '#64748b')};
+  color: ${props => (props.status ? '#2563eb' : '#64748b')};
   margin-left: 10px;
   font-size: 15px;
   font-family: 'Roboto';
   font-weight: 600;
 `
-export const UserLikeBtn =  styled.button`
+export const UserLikeBtn = styled.button`
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
-  display: flex;
-  align-items: center;
   color: ${props => (props.isLike ? '#2563eb' : '#64748b')};
   margin-left: 10px;
   font-size: 15px;
   font-family: 'Roboto';
   font-weight: 600;
 `
-export const UserDislikeBtn =  styled.button`
+export const UserDislikeBtn = styled.button`
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
-  display: flex;
-  align-items: center;
   color: ${props => (props.isDisLike ? '#2563eb' : '#64748b')};
   margin-left: 10px;
   font-size: 15px;
@@ -221,9 +219,9 @@ export const Description = styled.p`
   font-family: 'Roboto';
   font-weight: 600;
   color: ${props => (props.darkColor ? '#ebebeb' : '#64748b')};
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     display: none;
-  };
+  } ;
 `
 export const DescriptionForSmDevices = styled.p`
   display: none;
@@ -231,7 +229,7 @@ export const DescriptionForSmDevices = styled.p`
   font-family: 'Roboto';
   color: ${props => (props.darkColor ? '#ebebeb' : '#64748b')};
   font-weight: 600;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     display: block;
-  };
+  } ;
 `
