@@ -20,7 +20,7 @@ export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     width: 300px;
     padding: 30px;
     border-radius: 5px;
@@ -31,7 +31,7 @@ export const LogoImage = styled.img`
   width: 250px;
   margin-bottom: 40px;
   margin-top: 20px;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     width: 150px;
   }
 `
@@ -46,7 +46,7 @@ export const Label = styled.label`
   font-family: 'Roboto';
   font-weight: 900;
   color: ${props => (props.darkTheme ? ' #f1f5f9' : '#475569')};
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     font-size: 15px;
   }
 `
@@ -60,7 +60,7 @@ export const Input = styled.input`
   font-weight: 500px;
   padding: 15px 10px;
   font-size: 22px;
-  color:  #64748b;
+  color: #64748b;
   border: 1px solid #94a3b8;
   border-radius: 2px;
 `
@@ -73,7 +73,7 @@ export const CheckBoxInput = styled.input`
   height: 30px;
   border-radius: 2px;
   margin-right: 10px;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     width: 20px;
     height: 20px;
   }
@@ -81,7 +81,7 @@ export const CheckBoxInput = styled.input`
 export const CheckBoxLabel = styled(Label)`
   font-size: 25px;
   font-weight: 500;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     font-size: 20px;
   }
 `
@@ -97,7 +97,7 @@ export const LoginButton = styled.button`
   outline: none;
   font-weight: 900;
   cursor: pointer;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     padding: 10px 20px;
     font-size: 15px;
   }
@@ -107,9 +107,9 @@ export const ErrorMsg = styled.p`
   margin-top: 5px;
   font-family: 'Roboto';
   font-weight: 500;
-  color:#ff0000;
+  color: #ff0000;
   align-self: stretch;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     font-size: 15px;
   }
 `

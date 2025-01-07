@@ -10,19 +10,19 @@ export const ListItem = styled.li`
   display: flex;
   margin: auto;
   margin-bottom: 50px;
-  @media screen and (max-width: 576px){
+  @media screen and (max-width: 576px) {
     flex-direction: column;
     width: 90%;
     margin: auto;
     margin-bottom: 50px;
-  };
+  } ;
 `
 
 export const ThumbnailUrlContainer = styled.div`
   width: 45%;
-  @media screen and (max-width: 576px){
+  @media screen and (max-width: 576px) {
     width: 100%;
-  };
+  } ;
 `
 
 export const ThumbnailUrl = styled.img`
@@ -32,10 +32,10 @@ export const ContentContainer = styled.div`
   width: 45%;
   display: flex;
   margin-left: 15px;
-  @media screen and (max-width: 576px){
+  @media screen and (max-width: 576px) {
     width: 100%;
     margin-top: 15px;
-  };
+  } ;
 `
 
 export const TextContainer = styled.div``

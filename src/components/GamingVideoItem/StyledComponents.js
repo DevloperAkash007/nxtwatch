@@ -10,9 +10,9 @@ export const ListItem = styled.li`
   display: flex;
   margin: 0px 30px 30px 0px;
   flex-direction: column;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     width: 250px;
-  };
+  } ;
 `
 
 export const ThumbnailUrl = styled.img`

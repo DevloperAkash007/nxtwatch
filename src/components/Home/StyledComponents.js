@@ -78,7 +78,7 @@ export const InputItem = styled.div`
   display: flex;
   align-items: center;
   border: 2px solid #64748b;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     width: 100%;
   }
 `
@@ -121,9 +121,9 @@ export const NoSearchResultContainer = styled.div`
 
 export const NoSearchImage = styled.img`
   width: 50%;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     width: 100%;
-  };
+  } ;
 `
 
 export const NoSearchHeading = styled.h1`

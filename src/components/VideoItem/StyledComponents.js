@@ -9,7 +9,7 @@ export const ListItem = styled.li`
   width: 300px;
   margin-right: 30px;
   margin-bottom: 30px;
-  @media screen and (max-width: 576px){
+  @media screen and (max-width: 576px) {
     width: 100%;
     margin-right: 0px;
   }
@@ -20,7 +20,7 @@ export const ThumbnailUrl = styled.img`
 export const ContentContainer = styled.div`
   width: 100%;
   display: flex;
-  margin-top:5px;
+  margin-top: 5px;
 `
 
 export const ProfileImageUrl = styled.img`

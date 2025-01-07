@@ -20,7 +20,7 @@ export const MainContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 50%;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     width: 100%;
   }
 `
@@ -29,7 +29,7 @@ export const NFHeading = styled.h1`
   font-size: 32px;
   font-weight: 900;
   text-align: center;
-  margin-bottom:  0px;
+  margin-bottom: 0px;
   color: ${props => (props.darkTheme ? '#ffffff' : '#181818')};
 `
 
