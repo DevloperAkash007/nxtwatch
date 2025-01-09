@@ -30,6 +30,7 @@ export const NavItem = styled.li`
    margin-bottom: 10px;
    cursor: pointer;
    padding: 10px 0px 10px 10px;
+   width: 100%;
    text-decoration: none;
    background-color: ${props => {
      if (props.darkTheme) {
@@ -41,19 +42,13 @@ export const NavItem = styled.li`
      }
      return null
    }}};
-    //  props.darkTheme
-    //    ? props.backgroundColor
-    //      ? '#383838'
-    //      : null
-    //    : props.backgroundColor
-    //    ? '#e2e8f0'
-    //    : null};
 `
 export const NavItemName = styled.p`
   color: ${props => (props.darkTheme ? '#ffffff' : '#181818')};
   font-size: 15px;
   font-family: 'Roboto';
   font-weight: 700;
+  flex-grow: 1;
   margin: 0px;
   margin-left: 15px;
   padding: 0px;
@@ -98,4 +93,5 @@ export const LinkItem = styled(Link)`
   text-decoration: none;
   display: flex;
   align-items: center;
+  width: 100%;
 `
