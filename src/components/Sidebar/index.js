@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {Link, withRouter} from 'react-router-dom'
+import { withRouter} from 'react-router-dom'
 import {AiFillHome} from 'react-icons/ai'
 import {HiFire} from 'react-icons/hi'
 import {SiYoutubegaming} from 'react-icons/si'
@@ -106,26 +106,25 @@ class Sidebar extends Component {
             )
             break
           default:
-            return null
+            icon = ''
+            break
         }
-
-        const backgroundColor = activeSide === id
 
         const to = `/${
           id.toLocaleLowerCase() === 'home' ? '' : id.toLocaleLowerCase()
         }`
 
         return (
-          <NavItem
-            backgroundColor={backgroundColor}
-            darkTheme={darkTheme}
-            onClick={onClickRouteButton}
-          >
-            <LinkItem to={to} key={id}>
+          <LinkItem to={to} key={id}>
+            <NavItem
+              backgroundColor={activeSide === id}
+              darkTheme={darkTheme}
+              onClick={onClickRouteButton}
+            >
               {icon}
               <NavItemName darkTheme={darkTheme}>{name}</NavItemName>
-            </LinkItem>
-          </NavItem>
+            </NavItem>
+          </LinkItem>
         )
       }}
     </ThemeContext.Consumer>

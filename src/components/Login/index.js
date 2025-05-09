@@ -23,8 +23,8 @@ const darkLogoImage =
 
 class Login extends Component {
   state = {
-    username: '',
-    password: '',
+    username: 'rahul',
+    password: 'rahul@2021',
     showErrMsg: false,
     errorMsg: '',
     showPassword: 'password',
@@ -96,13 +96,8 @@ class Login extends Component {
       <ThemeContent.Consumer>
         {value => {
           const {darkTheme} = value
-          const {
-            showErrMsg,
-            errorMsg,
-            username,
-            password,
-            showPassword,
-          } = this.state
+          const {showErrMsg, errorMsg, username, password, showPassword} =
+            this.state
 
           return (
             <LoginBackground darkTheme={darkTheme}>
@@ -120,7 +115,7 @@ class Login extends Component {
                     onChange={this.onChangeUserName}
                     value={username}
                     id="Username"
-                    placeholder="Username"
+                    placeholder="Enter 'rahul' as the username"
                   />
                 </InputContainer>
                 <InputContainer>
@@ -132,7 +127,7 @@ class Login extends Component {
                     onChange={this.onChangePassword}
                     value={password}
                     id="Password"
-                    placeholder="Password"
+                    placeholder="Enter 'rahul@2021' as the password"
                   />
                 </InputContainer>
                 <CheckBoxInputContainer>

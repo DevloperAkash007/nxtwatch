@@ -102,7 +102,7 @@ class Home extends Component {
   renderInput = () => {
     const {searchInput} = this.state
     const onChangeSearchInput = event =>
-      this.setState({searchInput: event.target.value})
+      this.setState({searchInput: event.target.value.trim()})
 
     const fetchSearchData = () => {
       this.getVideos()
@@ -128,18 +128,22 @@ class Home extends Component {
     )
   }
 
-  renderSuccessView = () => {
-    const {videosList} = this.state
-    const clickNoSearchRetryBtn = () => {
-      this.getVideos()
-    }
-    const isEmptyView = videosList.length === 0
-    const renderSuccess = isEmptyView ? (
-      <ThemeContext.Consumer>
-        {value => {
-          const {darkTheme} = value
-          return (
-            <>
+  renderSuccessView = () => (
+    <ThemeContext.Consumer>
+      {value => {
+        const {darkTheme} = value
+        const {videosList} = this.state
+        const onClickRetryBtn = () => this.setState()
+        return (
+          <>
+            {this.renderInput()}
+            {videosList.length > 0 ? (
+              <VideosContainer>
+                {videosList.map(item => (
+                  <VideoItem key={item.id} videoItem={item} />
+                ))}
+              </VideosContainer>
+            ) : (
               <NoSearchResultContainer>
                 <NoSearchImage
                   alt="no videos"
@@ -153,46 +157,17 @@ class Home extends Component {
                 </NoSearchText>
                 <FailureViewRetryBtn
                   type="button"
-                  onClick={clickNoSearchRetryBtn}
+                  onClick={() => this.getVideos()}
                 >
                   Retry
                 </FailureViewRetryBtn>
               </NoSearchResultContainer>
-            </>
-          )
-        }}
-      </ThemeContext.Consumer>
-    ) : (
-      <VideosContainer>
-        {videosList.map(item => (
-          <VideoItem key={item.id} videoItem={item} />
-        ))}
-      </VideosContainer>
-    )
-
-    return (
-      <>
-        {this.renderInput()}
-        {renderSuccess}
-      </>
-    )
-    // if (!isEmptyView) {
-    //   return (
-    //     <>
-    //       {this.renderInput()}
-    //       <VideosContainer>
-    //         {videosList.map(item => (
-    //           <VideoItem key={item.id} videoItem={item} />
-    //         ))}
-    //       </VideosContainer>
-    //     </>
-    //   )
-    // } else {
-    //   return (
-
-    //   )
-    // }
-  }
+            )}
+          </>
+        )
+      }}
+    </ThemeContext.Consumer>
+  )
 
   renderFailureView = () => {
     const clickFailureViewRetrybtn = () => this.getVideos()
@@ -279,28 +254,26 @@ class Home extends Component {
   render() {
     const {showBanner} = this.state
     return (
-      <>
-        <ThemeContext.Consumer>
-          {value => {
-            const {darkTheme, activeSide, changeActiveSide} = value
-            if (activeSide !== 'HOME') {
-              changeActiveSide('HOME')
-            }
-            return (
-              <HomeRoute data-testid="home" darkTheme={darkTheme}>
-                <Headers />
-                <ResponsiveContainer>
-                  <Sidebar />
-                  <HomeContainer darkTheme={darkTheme}>
-                    {showBanner && this.renderBanner()}
-                    {this.swithBox()}
-                  </HomeContainer>
-                </ResponsiveContainer>
-              </HomeRoute>
-            )
-          }}
-        </ThemeContext.Consumer>
-      </>
+      <ThemeContext.Consumer>
+        {value => {
+          const {darkTheme, activeSide, changeActiveSide} = value
+          if (activeSide !== 'HOME') {
+            changeActiveSide('HOME')
+          }
+          return (
+            <HomeRoute data-testid="home" darkTheme={darkTheme}>
+              <Headers />
+              <ResponsiveContainer>
+                <Sidebar />
+                <HomeContainer darkTheme={darkTheme}>
+                  {showBanner && this.renderBanner()}
+                  {this.swithBox()}
+                </HomeContainer>
+              </ResponsiveContainer>
+            </HomeRoute>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 }

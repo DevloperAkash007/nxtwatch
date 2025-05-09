@@ -17,7 +17,7 @@ import {
 const SavedVideoItem = props => {
   const {videoItem} = props
   const {id, publishedAt, thumbnailUrl, title, viewCount, channel} = videoItem
-  const {name, profileImageUrl} = channel
+  const {name} = channel
 
   const timeformat = formatDistanceToNow(new Date(publishedAt))
   const timeformtalist = timeformat.split(' ')
@@ -35,8 +35,8 @@ const SavedVideoItem = props => {
       {value => {
         const {darkTheme} = value
         return (
-          <ListItem>
-            <LinkItem to={`/videos/${id}`}>
+          <LinkItem to={`/videos/${id}`}>
+            <ListItem>
               <ThumbnailUrlContainer>
                 <ThumbnailUrl alt="video thumbnail" src={thumbnailUrl} />
               </ThumbnailUrlContainer>
@@ -54,8 +54,8 @@ const SavedVideoItem = props => {
                   </ViewAndPublishedContainer>
                 </TextContainer>
               </ContentContainer>
-            </LinkItem>
-          </ListItem>
+            </ListItem>
+          </LinkItem>
         )
       }}
     </ThemeContext>

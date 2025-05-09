@@ -84,29 +84,27 @@ class VideoItemDetails extends Component {
     const {id} = params
     const jwtToken = Cookies.get('jwt_token')
     const apiUrl = `https://apis.ccbp.in/videos/${id}`
-    try {
-      const options = {
-        headers: {
-          Authorization: `Bearer ${jwtToken}`,
-        },
-        method: 'GET',
-      }
-      const response = await fetch(apiUrl, options)
-      if (response.ok) {
-        const data = await response.json()
-        const videoDetails = data.video_details
-        const formmatedVideoDetails = this.getFormattedData(videoDetails)
-        this.setState({
-          videoItemDetails: formmatedVideoDetails,
-          apiStatus: apiStatusConstands.success,
-        })
-      } else {
-        this.setState({
-          apiStatus: apiStatusConstands.failure,
-        })
-      }
-    } catch (err) {
-      console.log(err)
+
+    const options = {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+      method: 'GET',
+    }
+    const response = await fetch(apiUrl, options)
+    if (response.ok) {
+      const data = await response.json()
+      const videoDetails = data.video_details
+      const formmatedVideoDetails = this.getFormattedData(videoDetails)
+      console.log(formmatedVideoDetails)
+      this.setState({
+        videoItemDetails: formmatedVideoDetails,
+        apiStatus: apiStatusConstands.success,
+      })
+    } else {
+      this.setState({
+        apiStatus: apiStatusConstands.failure,
+      })
     }
   }
 
@@ -119,7 +117,7 @@ class VideoItemDetails extends Component {
           return (
             <FailureContainer>
               <FailureImage
-                alt="failure view"
+                alt='failure view'
                 src={
                   darkTheme
                     ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
@@ -135,7 +133,7 @@ class VideoItemDetails extends Component {
                 Please try again.
               </FailureViewText>
               <FailureViewRetryBtn
-                type="button"
+                type='button'
                 onClick={clickFailureViewRetrybtn}
               >
                 Retry
@@ -153,8 +151,8 @@ class VideoItemDetails extends Component {
         const {darkTheme} = value
         return (
           <LoaderContainer>
-            <div className="loader-container" data-testid="loader">
-              <Loader type="ThreeDots" color="#3b82f6" height="50" width="50" />
+            <div className='loader-container' data-testid='loader'>
+              <Loader type='ThreeDots' color='#3b82f6' height='50' width='50' />
             </div>
           </LoaderContainer>
         )
@@ -175,12 +173,8 @@ class VideoItemDetails extends Component {
   renderVideoItemDetailsOnSuccessView = () => (
     <ThemeContext.Consumer>
       {value => {
-        const {
-          darkTheme,
-          savedVideosList,
-          addSavedVideo,
-          removeSavedVideo,
-        } = value
+        const {darkTheme, savedVideosList, addSavedVideo, removeSavedVideo} =
+          value
         const {videoItemDetails, isLike, isDisLike, isSave} = this.state
 
         const {
@@ -229,14 +223,12 @@ class VideoItemDetails extends Component {
         return (
           <VideoContentContainer>
             <ReactPlayer
-              width="100%"
-              height="500px"
+              width='100%'
+              height='500px'
               url={videoUrl}
-              light={<ThumbnailUrlImage src={thumbnailUrl} alt="Thumbnail" />}
+              light={thumbnailUrl}
             />
-
             <VideoTitle darkColor={darkTheme}>{title}</VideoTitle>
-
             <UserActionsContainer>
               <ViewsAndPublishedAtContainer>
                 <Views darkColor={darkTheme}>{viewCount} views</Views>
@@ -245,48 +237,42 @@ class VideoItemDetails extends Component {
                 </Published>
               </ViewsAndPublishedAtContainer>
               <LikesDisLikesSaveContainer>
-                <BiLike size="25" color={isLike ? '#2563eb' : '#64748b'} />
-                <UserBtn type="button" onClick={onClickLike} status={isLike}>
-                  Like
-                </UserBtn>
-                <BiDislike
-                  size="25"
-                  color={isDisLike ? '#2563eb' : '#64748b'}
-                />
-                <UserBtn
-                  type="button"
-                  onClick={onClickDisLike}
-                  status={isDisLike}
-                >
-                  Dislike
-                </UserBtn>
-                <RiPlayListAddFill
-                  size="20"
-                  color={alreadySavedorNot ? '#2563eb' : '#64748b'}
-                />
-                {alreadySavedorNot && (
-                  <UserBtn
-                    type="button"
-                    onClick={saveVideoItem}
-                    status={alreadySavedorNot}
-                  >
-                    Saved
+                <LDS key='Like' onClick={onClickLike}>
+                  <BiLike size='25' color={isLike ? '#2563eb' : '#64748b'} />
+                  <UserBtn type='button' status={isLike}>
+                    Like
                   </UserBtn>
-                )}
-                {!alreadySavedorNot && (
-                  <UserBtn
-                    type="button"
-                    onClick={saveVideoItem}
-                    isSave={alreadySavedorNot}
-                  >
-                    Save
+                </LDS>
+                <LDS key='Dislike' onClick={onClickDisLike}>
+                  <BiDislike
+                    size='25'
+                    color={isDisLike ? '#2563eb' : '#64748b'}
+                  />
+                  <UserBtn type='button' status={isDisLike}>
+                    Dislike
                   </UserBtn>
-                )}
+                </LDS>
+                <LDS key='save' onClick={saveVideoItem}>
+                  <RiPlayListAddFill
+                    size='20'
+                    color={alreadySavedorNot ? '#2563eb' : '#64748b'}
+                  />
+                  {alreadySavedorNot && (
+                    <UserBtn type='button' status={alreadySavedorNot}>
+                      Saved
+                    </UserBtn>
+                  )}
+                  {!alreadySavedorNot && (
+                    <UserBtn type='button' status={alreadySavedorNot}>
+                      Save
+                    </UserBtn>
+                  )}
+                </LDS>
               </LikesDisLikesSaveContainer>
             </UserActionsContainer>
             <HorizontalLine />
             <ProfileContainer>
-              <ProfileImage alt="channel logo" src={profileImageUrl} />
+              <ProfileImage alt='channel logo' src={profileImageUrl} />
               <Content>
                 <Name darkColor={darkTheme}>{name}</Name>
                 <SubscriberCount darkColor={darkTheme}>
@@ -322,7 +308,7 @@ class VideoItemDetails extends Component {
           const {darkTheme} = value
           return (
             <VideoItemDetailsRoute
-              data-testid="videoItemDetails"
+              data-testid='videoItemDetails'
               darkTheme={darkTheme}
             >
               <Headers />

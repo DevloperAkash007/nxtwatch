@@ -73,7 +73,8 @@ class SavedVideos extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {darkTheme, activeSide, changeActiveSide} = value
+          const {darkTheme, activeSide, changeActiveSide, savedVideosList} =
+            value
           if (activeSide !== 'SAVED-VIDEOS') {
             changeActiveSide('SAVED-VIDEOS')
           }
@@ -83,7 +84,37 @@ class SavedVideos extends Component {
               <ResponsiveContainer>
                 <Sidebar />
                 <SavedVideosContainer darkColor={darkTheme}>
-                  {this.renderViews()}
+                  {savedVideosList.length > 0 ? (
+                    <>
+                      <LogoWithTextContainer
+                        data-testid="banner"
+                        darkColor={darkTheme}
+                      >
+                        <LogoBackground darkColor={darkTheme}>
+                          <HiFire size="40" color="#ff0000" />
+                        </LogoBackground>
+                        <Heading darkColor={darkTheme}>Saved Videos</Heading>
+                      </LogoWithTextContainer>
+                      <VideosContainer>
+                        {savedVideosList.map(item => (
+                          <SavedVideoItem key={item.id} videoItem={item} />
+                        ))}
+                      </VideosContainer>
+                    </>
+                  ) : (
+                    <NoSavedVideoContainer>
+                      <NoSavedVideoImage
+                        alt="no saved videos"
+                        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
+                      />
+                      <NoSavedVideoHeading darkColor={darkTheme}>
+                        No saved videos found
+                      </NoSavedVideoHeading>
+                      <NoSavedVideoText darkColor={darkTheme}>
+                        You can save your videos while watching them
+                      </NoSavedVideoText>
+                    </NoSavedVideoContainer>
+                  )}
                 </SavedVideosContainer>
               </ResponsiveContainer>
             </SavedVideosRoute>

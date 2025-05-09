@@ -35,8 +35,8 @@ const TrendingVideoItem = props => {
       {value => {
         const {darkTheme} = value
         return (
-          <ListItem>
-            <LinkItem to={`/videos/${id}`}>
+          <LinkItem to={`/videos/${id}`}>
+            <ListItem>
               <ThumbnailUrlContainer>
                 <ThumbnailUrl alt="video thumbnail" src={thumbnailUrl} />
               </ThumbnailUrlContainer>
@@ -54,8 +54,8 @@ const TrendingVideoItem = props => {
                   </ViewAndPublishedContainer>
                 </TextContainer>
               </ContentContainer>
-            </LinkItem>
-          </ListItem>
+            </ListItem>
+          </LinkItem>
         )
       }}
     </ThemeContext>

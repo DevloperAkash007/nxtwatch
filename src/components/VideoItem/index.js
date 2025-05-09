@@ -37,8 +37,8 @@ const VideoItem = props => {
       {value => {
         const {darkTheme} = value
         return (
-          <ListItem>
-            <Link className="link-router-element" to={`/videos/${id}`}>
+          <Link className="link-router-element" to={`/videos/${id}`}>
+            <ListItem>
               <ThumbnailUrl alt="video thumbnail" src={thumbnailUrl} />
               <ContentContainer>
                 <ProfileImageUrl alt="channel logo" src={profileImageUrl} />
@@ -55,8 +55,8 @@ const VideoItem = props => {
                   </ViewAndPublishedContainer>
                 </TextContainer>
               </ContentContainer>
-            </Link>
-          </ListItem>
+            </ListItem>
+          </Link>
         )
       }}
     </ThemeContext>

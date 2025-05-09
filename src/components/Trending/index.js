@@ -84,7 +84,7 @@ class Trending extends Component {
           return (
             <FailureContainer>
               <FailureImage
-                alt="failure view"
+                alt='failure view'
                 src={
                   darkTheme
                     ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
@@ -100,7 +100,7 @@ class Trending extends Component {
                 Please try again.
               </FailureViewText>
               <FailureViewRetryBtn
-                type="button"
+                type='button'
                 onClick={clickFailureViewRetrybtn}
               >
                 Retry
@@ -118,8 +118,8 @@ class Trending extends Component {
         const {darkTheme} = value
         return (
           <LoaderContainer>
-            <div className="loader-container" data-testid="loader">
-              <Loader type="ThreeDots" color="#3b82f6" height="50" width="50" />
+            <div className='loader-container' data-testid='loader'>
+              <Loader type='ThreeDots' color='#3b82f6' height='50' width='50' />
             </div>
           </LoaderContainer>
         )
@@ -136,9 +136,9 @@ class Trending extends Component {
           const {darkTheme} = value
           return (
             <>
-              <LogoWithTextContainer data-testid="banner" darkColor={darkTheme}>
+              <LogoWithTextContainer data-testid='banner' darkColor={darkTheme}>
                 <LogoBackground darkColor={darkTheme}>
-                  <HiFire size="40" color="#ff0000" />
+                  <HiFire size='40' color='#ff0000' />
                 </LogoBackground>
                 <Heading darkColor={darkTheme}>Trending</Heading>
               </LogoWithTextContainer>
@@ -178,7 +178,7 @@ class Trending extends Component {
           }
 
           return (
-            <TrendingRoute data-testid="trending" darkTheme={darkTheme}>
+            <TrendingRoute data-testid='trending' darkTheme={darkTheme}>
               <Headers />
               <ResponsiveContainer>
                 <Sidebar />

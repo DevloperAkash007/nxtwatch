@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {Ridirect, Link, withRouter} from 'react-router-dom'
+import { Link, withRouter} from 'react-router-dom'
 import {IoMdClose} from 'react-icons/io'
 import {AiFillHome} from 'react-icons/ai'
 import {HiFire} from 'react-icons/hi'
@@ -74,9 +74,7 @@ class Headers extends Component {
             history.replace('/login')
           }
 
-          const onChangeActiveSide = event => {
-            changeActiveSide(event.target.value)
-          }
+         
 
           return (
             <NavBar darkTheme={darkTheme}>

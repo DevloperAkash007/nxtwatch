@@ -26,6 +26,7 @@ export const ThumbnailUrlContainer = styled.div`
 `
 
 export const ThumbnailUrl = styled.img`
+  max-height: 300px;
   width: 100%;
 `
 export const ContentContainer = styled.div`

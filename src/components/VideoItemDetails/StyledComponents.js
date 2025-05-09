@@ -128,16 +128,19 @@ export const Published = styled.p`
 //   padding: 0px;
 // `
 
-export const LikesDisLikesSaveContainer = styled.div`
+export const LikesDisLikesSaveContainer = styled.ul`
   display: flex;
   align-items: center;
   list-style-type: none;
   padding: 0px;
 `
 export const LDS = styled.li`
-  margin: 0px 10px 0px 10px;
+  margin: 0px 0px 0px 10px;
+  width: 90px;
+  cursor: pointer;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   @media screen and (max-width: 767px) {
     margin: 0px 10px 0px 0px;
   } ;
@@ -149,7 +152,7 @@ export const UserBtn = styled.button`
   outline: none;
   cursor: pointer;
   color: ${props => (props.status ? '#2563eb' : '#64748b')};
-  margin-left: 10px;
+  margin-left: 5px;
   font-size: 15px;
   font-family: 'Roboto';
   font-weight: 600;
